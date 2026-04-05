@@ -1,0 +1,35 @@
+On branch main
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+	both added:      index.html
+	both added:      package-lock.json
+	both added:      package.json
+	both added:      src/app/components/About.tsx
+	both added:      src/app/components/AcademicJourney.tsx
+	both added:      src/app/components/Contact.tsx
+	both added:      src/app/components/Experience.tsx
+	both added:      src/app/components/Gallery.tsx
+	both added:      src/app/components/Hero.tsx
+	both added:      src/app/components/Portfolio.css
+	both added:      src/app/components/Projects.tsx
+	both added:      src/app/components/Skills.tsx
+	both added:      src/lib/supabase.ts
+	both added:      src/vite-env.d.ts
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+	modified:   Repository-name-urban-report-ai-mainaa (modified content, untracked content)
+	modified:   urban-report-ai-main (modified content, untracked content)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	status_output.txt
+	status_output_cmd.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
