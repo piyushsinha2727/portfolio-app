@@ -1,94 +1,114 @@
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Globe, Shield, QrCode, Layout } from "lucide-react";
+import { useState } from "react";
+import { BackgroundLayer } from "./BackgroundLayer";
 import "./Portfolio.css";
 
 import civicLogo from "@/portfoliopics/civic_drishti_logo.png";
 import cyberShieldLogo from "@/portfoliopics/logo_cybershield.png";
 import qrCodeLogo from "@/portfoliopics/logo_qrcode.png";
-import cmsLogo from "@/portfoliopics/logo_cms.png";
-import publicCmsLogo from "@/portfoliopics/logo_public_cms.png";
 import portfolioLogo from "@/portfoliopics/logo_portfolio.png";
 
 const projects = [
   {
     title: "CivicDrishti Bharat",
-    description: "An AI-based civic complaint resolution platform presented at the Grand Finale of India Innovates 2026 (Bharat Mandapam). It uses AI to detect issues like potholes, garbage, and drainage problems, following a structured workflow for transparency and accountability.",
+    organization: "India Innovates 2026 Grand Finale",
+    description: "AI-based civic complaint resolution platform for detecting potholes, garbage, and drainage issues.",
     image: civicLogo,
     tags: ["React", "AI", "Node.js", "MongoDB", "CivicTech"],
+    icon: Globe,
     liveLink: "#",
-    githubLink: "#"
+    githubLink: "#",
+    year: "2026",
   },
   {
     title: "CyberShield AI",
-    description: "Presented at Hack & Forge 24 Hour Hackathon Final Round (BIT Mesra). A comprehensive cybersecurity solution that leverages AI to detect and mitigate threats in real-time, designed to protect users from phishing and scam links.",
+    organization: "Hack & Forge Hackathon, BIT Mesra",
+    description: "Comprehensive cybersecurity solution leveraging AI to detect and mitigate phishing threats in real-time.",
     image: cyberShieldLogo,
-    tags: ["VS Code", "Node.js", "Tailwind CSS", "Supabase", "Python", "Vercel"],
+    tags: ["Python", "Supabase", "Tailwind", "Vercel"],
+    icon: Shield,
     liveLink: "https://ultrashield-ai-main.vercel.app/",
-    githubLink: "#"
+    githubLink: "#",
+    year: "2026",
   },
   {
     title: "QR Code Generator",
-    description: "A web-based application that generates QR codes for various types of data, including URLs, text, and contact information.",
+    organization: "Personal Project",
+    description: "Web application that generates QR codes for URLs, text, and contact information.",
     image: qrCodeLogo,
-    tags: ["VS Code", "Node.js", "Express.js", "Supabase", "HTML", "CSS", "JS", "Render"],
+    tags: ["Node.js", "Express", "HTML", "CSS", "Render"],
+    icon: QrCode,
     liveLink: "https://qr-generator-1-mqzf.onrender.com/",
-    githubLink: "https://github.com/piyushsinha2727/qr-generator"
+    githubLink: "https://github.com/piyushsinha2727/qr-generator",
+    year: "2025",
   },
-
   {
     title: "Portfolio Development",
-    description: "A high-performance, responsive web application developed to showcase my engineering journey and technical expertise. Built using React and TypeScript, the project utilizes Vite for a fast development experience and Tailwind CSS for a modern, sleek UI.",
+    organization: "Personal Project",
+    description: "High-performance responsive portfolio built with React, TypeScript, and Vite.",
     image: portfolioLogo,
-    tags: ["React", "Tailwind CSS", "Typescript", "Supabase"],
+    tags: ["React", "TypeScript", "Tailwind", "Supabase"],
+    icon: Layout,
     liveLink: "#",
-    githubLink: "#"
-  }
+    githubLink: "#",
+    year: "2026",
+  },
 ];
 
 export function Projects() {
   return (
     <section id="projects" className="section section-dark">
-      <div className="container">
-        <h2 className="section-title glow-text">Featured Projects</h2>
+      <BackgroundLayer variant="grid" />
 
-        <div className="projects-grid">
-          {projects.map((project, index) => (
-            <div key={index} className="project-card glass-card">
-              <div className="project-image-wrapper" style={{ height: '240px' }}>
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="project-image"
-                  style={{ objectFit: 'cover', height: '100%', width: '100%' }}
-                />
-                <div className="project-overlay"></div>
-              </div>
+      <div className="section-content">
+        <div className="container">
+          <h2 className="section-title glow-text">Featured Projects</h2>
+          <p className="timeline-subtitle">Real-world applications and innovative solutions I've built.</p>
 
-              <div className="project-content">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
+          <div className="timeline">
+            <div className="timeline-line" />
 
-                <div className="project-tags">
-                  {project.tags.map((tag, idx) => (
-                    <span key={idx} className="project-tag">
-                      {tag}
-                    </span>
-                  ))}
+            {projects.map((project, index) => {
+              const Icon = project.icon;
+              const isLeft = index % 2 === 0;
+              return (
+                <div key={index} className={`timeline-item ${isLeft ? 'timeline-left' : 'timeline-right'}`}>
+                  <div className="timeline-year">{project.year}</div>
+
+                  <div className="timeline-node">
+                    <Icon size={20} />
+                  </div>
+
+                  <div className="timeline-card glass-card">
+                    <h3 className="timeline-card-title">{project.title}</h3>
+                    <p className="timeline-card-org">{project.organization}</p>
+                    <p className="timeline-card-desc">{project.description}</p>
+                    <div className="timeline-tags">
+                      {project.tags.map((tag, idx) => (
+                        <span key={idx} className="timeline-tag">{tag}</span>
+                      ))}
+                    </div>
+                    <div className="timeline-card-links">
+                      {project.liveLink && project.liveLink !== "#" && (
+                        <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="timeline-link">
+                          <ExternalLink size={14} />
+                          <span>Live</span>
+                        </a>
+                      )}
+                      {project.githubLink && project.githubLink !== "#" && (
+                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="timeline-link timeline-link--gh">
+                          <Github size={14} />
+                          <span>Code</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
+              );
+            })}
 
-                <div className="project-links">
-                  <a href={project.liveLink} className="project-link">
-                    <ExternalLink size={18} />
-                    <span>Live Demo</span>
-                  </a>
-
-                  <a href={project.githubLink} className="project-link github">
-                    <Github size={18} />
-                    <span>Code</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
+            <div className="timeline-end-dot" />
+          </div>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { BackgroundLayer } from "./BackgroundLayer";
 import "./Portfolio.css";
 
 // --- START OF IMPORTING PART ---
@@ -160,54 +161,59 @@ export function Gallery() {
 
   return (
     <section id="gallery" className="section section-alternate">
-      <div className="container">
-        <h2 className="section-title glow-text">Journey Gallery</h2>
-        
-        <div className="gallery-container">
-          <div className="carousel-wrapper">
-            <div 
-              className="carousel-track"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-            >
-              {slides.map((slide, index) => (
-                <div key={index} className="carousel-slide">
-                  {slide.image ? (
-                    <img 
-                      src={slide.image} 
-                      alt={slide.title}
-                      className="carousel-image"
-                    />
-                  ) : (
-                    <div className="image-error-placeholder" style={{ padding: '40px', textAlign: 'center', background: '#222' }}>
-                      <p style={{ color: '#ff4d4d' }}>Image mapping failed for slide {index + 1}</p>
-                      <small>Check if filename matches exactly in /src/portfoliopics/</small>
+      {/* Calm Background — Orbits + Blobs */}
+      <BackgroundLayer variant="calm" />
+
+      <div className="section-content">
+        <div className="container">
+          <h2 className="section-title glow-text">Journey Gallery</h2>
+          
+          <div className="gallery-container">
+            <div className="carousel-wrapper">
+              <div 
+                className="carousel-track"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {slides.map((slide, index) => (
+                  <div key={index} className="carousel-slide">
+                    {slide.image ? (
+                      <img 
+                        src={slide.image} 
+                        alt={slide.title}
+                        className="carousel-image"
+                      />
+                    ) : (
+                      <div className="image-error-placeholder" style={{ padding: '40px', textAlign: 'center', background: '#222' }}>
+                        <p style={{ color: '#ff4d4d' }}>Image mapping failed for slide {index + 1}</p>
+                        <small>Check if filename matches exactly in /src/portfoliopics/</small>
+                      </div>
+                    )}
+                    <div className="carousel-caption">
+                      <h3>{slide.title}</h3>
+                      <p>{slide.description}</p>
                     </div>
-                  )}
-                  <div className="carousel-caption">
-                    <h3>{slide.title}</h3>
-                    <p>{slide.description}</p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              <button className="carousel-button prev" onClick={prevSlide} aria-label="Previous Slide">
+                <ChevronLeft size={24} />
+              </button>
+              <button className="carousel-button next" onClick={nextSlide} aria-label="Next Slide">
+                <ChevronRight size={24} />
+              </button>
             </div>
 
-            <button className="carousel-button prev" onClick={prevSlide} aria-label="Previous Slide">
-              <ChevronLeft size={24} />
-            </button>
-            <button className="carousel-button next" onClick={nextSlide} aria-label="Next Slide">
-              <ChevronRight size={24} />
-            </button>
-          </div>
-
-          <div className="carousel-indicators">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                className={`indicator-dot ${index === currentSlide ? 'active' : ''}`}
-                onClick={() => goToSlide(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
+            <div className="carousel-indicators">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  className={`indicator-dot ${index === currentSlide ? 'active' : ''}`}
+                  onClick={() => goToSlide(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

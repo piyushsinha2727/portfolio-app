@@ -1,6 +1,7 @@
 import { ArrowDown, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { BackgroundLayer } from "./BackgroundLayer";
 import "./Portfolio.css";
 
 import bg1 from "@/portfoliopics/newest/IMG20260328100201.jpg";
@@ -29,6 +30,7 @@ export function Hero() {
 
   return (
     <section className="hero">
+      {/* Background Image Carousel */}
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, overflow: 'hidden' }}>
         <AnimatePresence mode="popLayout">
           <motion.img
@@ -49,6 +51,10 @@ export function Hero() {
         </AnimatePresence>
       </div>
 
+      {/* Kinetic Motion Background — Maximum Density */}
+      <BackgroundLayer variant="hero" />
+
+      {/* Particles */}
       <div className="hero-background" style={{ zIndex: 1 }}>
         {[...Array(20)].map((_, i) => (
           <div
@@ -64,8 +70,9 @@ export function Hero() {
         ))}
       </div>
 
+      {/* Main Content */}
       <div className="hero-content" style={{ zIndex: 2, position: 'relative' }}>
-        <motion.div 
+        <motion.div
           className="hero-badge"
           initial={{ opacity: 0, scale: 0.8, y: -20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -75,28 +82,28 @@ export function Hero() {
           <span style={{ color: '#22d3ee', fontSize: '0.875rem', fontWeight: 500 }}>Software Engineer & Architect</span>
         </motion.div>
 
-        <motion.h1 
+        <motion.h1
           className="hero-title"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           style={{ fontWeight: 800, letterSpacing: '-0.02em', textShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
         >
-          Innovating with <span className="glow-text">AI</span> & Code.<br/>
+          Innovating with <span className="glow-text">AI</span> & Code.<br />
           Building Secure Digital Ecosystems.
         </motion.h1>
 
-        <motion.p 
+        <motion.p
           className="hero-subtitle"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           style={{ color: '#10b981', fontWeight: 600, textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
         >
-        Piyush Kumar | Full Stack & AI Developer
+          Piyush Kumar | Full Stack & AI Developer
         </motion.p>
 
-        <motion.p 
+        <motion.p
           className="hero-description"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -106,8 +113,8 @@ export function Hero() {
           Passionate about building intelligent, secure, and scalable solutions. From advanced cybersecurity systems to AI-powered civic platforms, I deliver high-performance applications that make a real-world impact.
         </motion.p>
 
-        <motion.button 
-          onClick={scrollToAbout} 
+        <motion.button
+          onClick={scrollToAbout}
           className="cta-button"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -117,11 +124,11 @@ export function Hero() {
           style={{ boxShadow: '0 0 20px rgba(16, 185, 129, 0.4)' }}
         >
           <span>View Projects</span>
-          <ArrowDown size={20} className="arrow-icon" />
+          <ArrowDown size={60} className="arrow-icon" />
         </motion.button>
       </div>
 
-      <motion.div 
+      <motion.div
         className="scroll-indicator"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

@@ -1,57 +1,91 @@
-import { Code, Palette, Database, Smartphone, Zap } from "lucide-react";
+import { Code, Palette, Database, Zap, Server, GitBranch } from "lucide-react";
+import { BackgroundLayer } from "./BackgroundLayer";
 import "./Portfolio.css";
 
 const skills = [
   {
+    title: "Frontend Development",
+    description: "Building modern, responsive interfaces with component-driven architecture and state management.",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Next.js", "HTML5"],
     icon: Code,
-    title: "Development Language",
-    skills: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Java"]
+    year: "Core",
   },
   {
+    title: "Backend & Databases",
+    description: "Designing scalable APIs and managing relational and NoSQL databases for production systems.",
+    tags: ["Node.js", "Express", "MySQL", "MongoDB", "Supabase"],
     icon: Database,
-    title: "Backend Development",
-    skills: ["MySQL", "MongoDB", "Supabase"]
+    year: "Core",
   },
   {
+    title: "Programming Languages",
+    description: "Proficient in multiple paradigms — from object-oriented to functional programming.",
+    tags: ["Java", "Python", "JavaScript", "C", "SQL"],
+    icon: Server,
+    year: "Core",
+  },
+  {
+    title: "Design & UI/UX",
+    description: "Creating intuitive user experiences with modern design tools and responsive layouts.",
+    tags: ["Figma", "Flutter", "UI/UX", "Responsive Design", "Lovable"],
     icon: Palette,
-    title: "Design",
-    skills: ["Figma", "Flutter", "UI/UX", "Responsive Design", "Lovable"]
+    year: "Creative",
   },
   {
+    title: "DevOps & Tools",
+    description: "Version control, CI/CD workflows, cloud deployment, and development environments.",
+    tags: ["Git", "GitHub", "Azure", "Vercel", "Render"],
+    icon: GitBranch,
+    year: "Tools",
+  },
+  {
+    title: "AI & Emerging Tech",
+    description: "Leveraging AI APIs, prompt engineering, and intelligent automation in real-world projects.",
+    tags: ["Gemini API", "OpenAI", "Antigravity", "Prompt Engineering"],
     icon: Zap,
-    title: "Tools & Others",
-    skills: ["Git", "VS Code", "VS Studios", "Eclipse", "Antigravity"]
-  }
+    year: "Frontier",
+  },
 ];
 
 export function Skills() {
   return (
     <section id="skills" className="section section-gradient">
-      <div className="container">
-        <h2 className="section-title glow-text">Skills & Expertise</h2>
+      <BackgroundLayer variant="calm" />
 
-        <div className="skills-grid">
-          {skills.map((skill, index) => {
-            const Icon = skill.icon;
-            return (
-              <div key={index} className="skill-card glass-card">
-                <div className="skill-icon-wrapper" style={{ boxShadow: '0 4px 15px rgba(16, 185, 129, 0.2)' }}>
-                  <Icon className="skill-icon" size={24} style={{ color: '#10b981' }} />
+      <div className="section-content">
+        <div className="container">
+          <h2 className="section-title glow-text">Skills & Expertise</h2>
+          <p className="timeline-subtitle">Technologies, tools, and disciplines I work with every day.</p>
+
+          <div className="timeline">
+            <div className="timeline-line" />
+
+            {skills.map((skill, index) => {
+              const Icon = skill.icon;
+              const isLeft = index % 2 === 0;
+              return (
+                <div key={index} className={`timeline-item ${isLeft ? 'timeline-left' : 'timeline-right'}`}>
+                  <div className="timeline-year">{skill.year}</div>
+
+                  <div className="timeline-node">
+                    <Icon size={20} />
+                  </div>
+
+                  <div className="timeline-card glass-card">
+                    <h3 className="timeline-card-title">{skill.title}</h3>
+                    <p className="timeline-card-desc">{skill.description}</p>
+                    <div className="timeline-tags">
+                      {skill.tags.map((tag, idx) => (
+                        <span key={idx} className="timeline-tag">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                
-                <h3 className="skill-title" style={{ color: '#22d3ee', fontWeight: 600 }}>{skill.title}</h3>
-                
-                <ul className="skill-list" style={{ marginTop: '1rem' }}>
-                  {skill.skills.map((item, idx) => (
-                    <li key={idx} className="skill-item" style={{ padding: '0.5rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                      <span className="skill-dot" style={{ backgroundColor: '#10b981', boxShadow: '0 0 8px #10b981' }}></span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
+              );
+            })}
+
+            <div className="timeline-end-dot" />
+          </div>
         </div>
       </div>
     </section>
